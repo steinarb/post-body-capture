@@ -1,0 +1,70 @@
+* A servlet to capture POST bodies into files
+
+I needed something that could capture POST bodies so that I could use real POST bodies in unit tests (specifically: I needed some examples of [[https://docs.sonarqube.org/display/SONAR/Webhooks][Sonar Webhooks]] for my [[https://github.com/steinarb/sonar-collector][sonar-collector]] utility).
+
+The solution was this servlet:
+ 1. The servlet installs into an [[http://karaf.apache.org][apache karaf]] instance
+ 2. All POST bodies are written to a temp file, and the file name is written to the log as an INFO message. Example log message:
+    #+BEGIN_EXAMPLE
+      [INFO] Saved body of POST to http://localhost:8181/post-body-capture to file: /tmp/postbodycaptureservlet628424040798817132.json
+    #+END_EXAMPLE
+
+/Note:/ The temp files aren't cleaned up by the servlet or when uninstalling the servlet, so leaving this servlet running can create a lot of clutter in the temp directory.
+
+Note also, that this servlet is written to be installed as a [[https://karaf.apache.org/manual/latest/#_feature_and_resolver][karaf feature]] in [[http://karaf.apache.org][Apache Karaf]] and connect to the [[http://ops4j.github.io/pax/web/SNAPSHOT/User-Guide.html#whiteboard-extender][Pax Web Whiteboard Extender]].
+
+But outside of OSGi, Pax Web and Karaf, this is just a plain servlet with no special dependencies, and can presumably be used everywhere such a servlet can be used. I haven't tried this myself, however.
+
+** Status
+
+[[https://travis-ci.org/steinarb/post-body-capture][file:https://travis-ci.org/steinarb/post-body-capture.svg?branch=master]] [[https://coveralls.io/r/steinarb/post-body-capture][file:https://coveralls.io/repos/steinarb/post-body-capture/badge.svg]]
+
+
+*** SonarCloud
+
+[[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=lines#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=bugs#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_bugs#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=vulnerabilities#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_vulnerabilities#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=code_smells#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_code_smells#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=coverage#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_coverage#.svg]]
+
+
+** How to build and install
+
+This is how to build and install the servlet:
+ 1. Clone and build the servlet
+    #+BEGIN_EXAMPLE
+      mkdir -p ~/git
+      cd ~/git
+      git clone https://github.com/steinarb/post-body-capture.git
+      cd ~/git/post-body-capture
+      mvn clean install
+    #+END_EXAMPLE
+ 2. SSH into karaf
+    #+BEGIN_EXAMPLE
+      ssh -p 8101 karaf@localhost
+    #+END_EXAMPLE
+ 3. In karaf, install the feature that pulls in the servlet with dependencies
+    #+BEGIN_EXAMPLE
+      feature:repo-add mvn:no.priv.bang.debug-utils/post-body-capture/LATEST/xml/features
+      feature:install post-body-capture
+    #+END_EXAMPLE
+ 4. After this, the servlet will be listening for POST requests, at the local path "/post-body-capture" on the karaf web server, e.g. http://localhost:8181/post-body-capture for a karaf server started locally, with default settings
+
+** To uninstall the servlet from karaf
+
+This is how to uninstall the servlet from karaf:
+ 1. SSH into karaf
+    #+BEGIN_EXAMPLE
+      ssh -p 8101 karaf@localhost
+    #+END_EXAMPLE
+ 2. At the karaf console prompt, give the following command:
+    #+BEGIN_EXAMPLE
+      feature:uninstall post-body-capture
+    #+END_EXAMPLE
+
+This will disconnect the servlet from the Pax Web Whiteboard Extender and uninstall the servlet, and all dependencies (e.g. Pax Web) that has been pulled in by this feature.
+
+However, if a different feature has pulled in the same dependencies, the dependencies won't be uninstalled until everything that has required them is uninstalled.
+
+** License
+
+This software project is licensed under Apache License v. 2.
+
+See the LICENSE file for details.
