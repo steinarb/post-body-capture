@@ -211,4 +211,50 @@
         </plugins>
     </build>
 
+    <licenses>
+        <license>
+            <name>Apache License version 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Steinar Bang</name>
+            <email>sb@dod.no</email>
+            <url>https://steinar.bang.priv.no/</url>
+            <organization>steinarb-github</organization>
+            <organizationUrl>https://github.com/steinarb</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/steinarb/post-body-capture</url>
+        <connection>scm:git:https://github.com/steinarb/post-body-capture.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/steinarb/post-body-capture/issues</url>
+        <system>Github issue tracker</system>
+    </issueManagement>
+
+    <ciManagement>
+        <url>https://travis-ci.org/steinarb/post-body-capture</url>
+        <system>travis-ci</system>
+    </ciManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <url>http://steinarb.github.io/post-body-capture/</url>
+
 </project>
