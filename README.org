@@ -25,36 +25,21 @@ But outside of OSGi, Pax Web and Karaf, this is just a plain servlet with no spe
 [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=lines#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=bugs#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_bugs#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=vulnerabilities#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_vulnerabilities#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=code_smells#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_code_smells#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=coverage#.svg]] [[https://sonarcloud.io/dashboard/index/no.priv.bang.debug-utils%3Apost-body-capture][file:https://sonarcloud.io/api/badges/measure?key=no.priv.bang.debug-utils%3Apost-body-capture&metric=new_coverage#.svg]]
 
 
-** How to build and install
+** How to install
 
 This is how to build and install the servlet:
- 1. Clone and build the servlet
-    #+BEGIN_EXAMPLE
-      mkdir -p ~/git
-      cd ~/git
-      git clone https://github.com/steinarb/post-body-capture.git
-      cd ~/git/post-body-capture
-      mvn clean install
-    #+END_EXAMPLE
- 2. SSH into karaf
-    #+BEGIN_EXAMPLE
-      ssh -p 8101 karaf@localhost
-    #+END_EXAMPLE
- 3. In karaf, install the feature that pulls in the servlet with dependencies
+ 1. First [[https://karaf.apache.org/manual/latest/quick-start.html#_quick_start][download and install apache karaf]]
+ 2. In the apache karaf command line, install the feature that pulls in the servlet with dependencies
     #+BEGIN_EXAMPLE
       feature:repo-add mvn:no.priv.bang.debug-utils/post-body-capture/LATEST/xml/features
       feature:install post-body-capture
     #+END_EXAMPLE
- 4. After this, the servlet will be listening for POST requests, at the local path "/post-body-capture" on the karaf web server, e.g. http://localhost:8181/post-body-capture for a karaf server started locally, with default settings
+ 3. After this, the servlet will be listening for POST requests, at the local path "/post-body-capture" on the karaf web server, e.g. http://localhost:8181/post-body-capture for a karaf server started locally, with default settings
 
 ** To uninstall the servlet from karaf
 
 This is how to uninstall the servlet from karaf:
- 1. SSH into karaf
-    #+BEGIN_EXAMPLE
-      ssh -p 8101 karaf@localhost
-    #+END_EXAMPLE
- 2. At the karaf console prompt, give the following command:
+ 1. At the karaf console prompt, give the following command:
     #+BEGIN_EXAMPLE
       feature:uninstall post-body-capture
     #+END_EXAMPLE
