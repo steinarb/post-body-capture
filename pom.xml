@@ -11,12 +11,12 @@
 <!-- See the License for the specific language governing permissions and limitations -->
 <!-- under the License.                                                              -->
 
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" >
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.priv.bang.debug-utils</groupId>
     <artifactId>post-body-capture</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Servlet dumping POSTed data to files</name>
 
@@ -258,7 +258,7 @@
     <scm>
         <url>https://github.com/steinarb/post-body-capture</url>
         <connection>scm:git:https://github.com/steinarb/post-body-capture.git</connection>
-        <tag>HEAD</tag>
+        <tag>post-body-capture-1.0.0</tag>
     </scm>
 
     <issueManagement>
