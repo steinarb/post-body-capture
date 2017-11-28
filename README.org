@@ -17,7 +17,7 @@ But outside of OSGi, Pax Web and Karaf, this is just a plain servlet with no spe
 
 ** Status
 
-[[https://travis-ci.org/steinarb/post-body-capture][file:https://travis-ci.org/steinarb/post-body-capture.svg?branch=master]] [[https://coveralls.io/r/steinarb/post-body-capture][file:https://coveralls.io/repos/steinarb/post-body-capture/badge.svg]]
+[[https://travis-ci.org/steinarb/post-body-capture][file:https://travis-ci.org/steinarb/post-body-capture.svg?branch=master]] [[https://coveralls.io/r/steinarb/post-body-capture][file:https://coveralls.io/repos/steinarb/post-body-capture/badge.svg]] [[https://maven-badges.herokuapp.com/maven-central/no.priv.bang.debug-utils/post-body-capture][file:https://maven-badges.herokuapp.com/maven-central/no.priv.bang.debug-utils/post-body-capture/badge.svg]]
 
 
 *** SonarCloud
