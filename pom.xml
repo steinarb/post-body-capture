@@ -19,6 +19,7 @@
     <version>1.0.2-SNAPSHOT</version>
 
     <name>Servlet dumping POSTed data to files</name>
+    <description>A debugging tool for capturing webhook POST messages, written as a pax web whiteboard extender microservice.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
