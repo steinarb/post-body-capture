@@ -16,7 +16,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.priv.bang.debug-utils</groupId>
     <artifactId>post-body-capture</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
 
     <name>Servlet dumping POSTed data to files</name>
     <description>A debugging tool for capturing webhook POST messages, written as a pax web whiteboard extender microservice.</description>
@@ -247,7 +247,7 @@
     <scm>
         <url>https://github.com/steinarb/post-body-capture</url>
         <connection>scm:git:https://github.com/steinarb/post-body-capture.git</connection>
-        <tag>HEAD</tag>
+        <tag>post-body-capture-1.0.2</tag>
     </scm>
 
     <issueManagement>
