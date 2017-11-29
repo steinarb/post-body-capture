@@ -34,7 +34,7 @@ import no.priv.bang.osgi.service.adapters.logservice.LogServiceAdapter;
 @Component(service={Servlet.class}, property={"alias=/post-body-capture"} )
 public class PostBodyCaptureServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private LogServiceAdapter logservice = new LogServiceAdapter();
+    private final LogServiceAdapter logservice = new LogServiceAdapter();
 
     @Reference
     public void setLogservice(LogService logservice) {
