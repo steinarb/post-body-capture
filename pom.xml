@@ -16,7 +16,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.priv.bang.debug-utils</groupId>
     <artifactId>post-body-capture</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <name>Servlet dumping POSTed data to files</name>
 
@@ -246,7 +246,7 @@
     <scm>
         <url>https://github.com/steinarb/post-body-capture</url>
         <connection>scm:git:https://github.com/steinarb/post-body-capture.git</connection>
-        <tag>post-body-capture-1.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
