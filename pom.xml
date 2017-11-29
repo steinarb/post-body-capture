@@ -163,21 +163,9 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
-                    <releaseProfiles>release-sign-artifact</releaseProfiles>
+                    <releaseProfiles>release-extras</releaseProfiles>
                 </configuration>
             </plugin>
-	        <plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.1</version>
-				<extensions>true</extensions>
-				<configuration>
-				    <!-- The Base URL of Nexus instance where we want to stage -->
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<!-- The server "id" element from settings to use authentication from -->
-					<serverId>ossrh</serverId>
-				</configuration>
-			</plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -286,7 +274,7 @@
 
     <profiles>
         <profile>
-            <id>release-sign-artifact</id>
+            <id>release-extras</id>
             <build>
                 <plugins>
                     <plugin>
@@ -306,6 +294,26 @@
                                         <arg>loopback</arg>
                                     </gpgArguments>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <skipStaging>true</skipStaging>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
